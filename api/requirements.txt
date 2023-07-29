@@ -4,4 +4,4 @@ psycopg
 flask-bcrypt
 flask-session
 flask-cors
-redis
+flask-sqlalchemy

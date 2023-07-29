@@ -14,6 +14,9 @@ export default function Header() {
         <div className="text-3xl">Flask-React Auth Starter</div>
       </div>
       <div className="navbar-end">
+        <div>
+          {user && user.email}
+        </div>
         <div className="dropdown dropdown-end dropdown-hover">
           <label tabIndex={0} className="btn btn-ghost m-1">
             <svg
