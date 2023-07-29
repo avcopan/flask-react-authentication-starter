@@ -33,8 +33,11 @@ const errorSlice = createSlice({
     registrationError: () => {
       return "This email is already registered. Please log in instead.";
     },
+    retypeError: () => {
+      return "The re-typed password does not match. Please try again."
+    },
     codelessError: () => {
-      return "Authentication failed. The server may be down.";
+      return "Something isn't right on the server...";
     },
     clearError: () => {
       return "";
@@ -44,6 +47,7 @@ const errorSlice = createSlice({
 
 const loginError = errorSlice.actions.loginError;
 const registrationError = errorSlice.actions.registrationError;
+export const retypeError = errorSlice.actions.retypeError;
 const codelessError = errorSlice.actions.codelessError;
 const clearError = errorSlice.actions.clearError;
 const errorReducer = errorSlice.reducer;
@@ -124,7 +128,7 @@ function* registerUserSaga(action) {
   try {
     yield put(clearError());
     const res = yield axios.post("/api/register", action.payload);
-    yield put(loginUser(action.payload));
+    yield put(getUser());
   } catch (error) {
     console.error(error);
     if (error.response.status === 409) {

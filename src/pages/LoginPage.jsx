@@ -14,30 +14,24 @@ export default function LoginPage() {
 
   const { mode } = useParams();
   useEffect(() => {
-    setIsRegistering(mode == "register")
-  }, [mode])
+    setIsRegistering(mode == "register");
+  }, [mode]);
 
-  const register = () => {};
+  const register = () => {
+    if (password !== password2) {
+      dispatch(actions.retypeError());
+    } else {
+      dispatch(actions.registerUser({ email, password }));
+    }
+  };
 
   const login = () => {
     dispatch(actions.loginUser({ email, password }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (isRegistering) {
-      register();
-    } else {
-      login();
-    }
-  };
-
   return (
-    <div
-      className="flex flex-col justify-center items-center"
-      onSubmit={handleSubmit}
-    >
-      <form className="flex flex-col gap-2 w-fit" onSubmit={handleSubmit}>
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col gap-2 w-fit">
         <div className="self-end mb-6">
           <label className="flex gap-2 justify-between items-end label cursor-pointer w-full ">
             {isRegistering ? (
@@ -79,12 +73,19 @@ export default function LoginPage() {
               value={password2}
               onChange={(event) => setPassword2(event.target.value)}
             />
-            <button className="btn btn-outline mb-4 self-end">Register</button>
+            <button
+              className="btn btn-outline mb-4 self-end"
+              onClick={register}
+            >
+              Register
+            </button>
           </>
         ) : (
-          <button className="btn btn-outline mb-4 self-end">Log In</button>
+          <button className="btn btn-outline mb-4 self-end" onClick={login}>
+            Log In
+          </button>
         )}
-      </form>
+      </div>
       <div>
         {errorMessage}
         <p>{email}</p>

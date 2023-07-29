@@ -1,4 +1,5 @@
 import {
+  retypeError,
   getUser,
   loginUser,
   logoutUser,
@@ -6,6 +7,7 @@ import {
 } from "./store";
 
 const actions = {
+  retypeError,
   getUser,
   loginUser,
   logoutUser,
