@@ -1,5 +1,4 @@
 import {
-  inputError,
   getUser,
   loginUser,
   logoutUser,
@@ -7,7 +6,6 @@ import {
 } from "./store";
 
 const actions = {
-  inputError,
   getUser,
   loginUser,
   logoutUser,

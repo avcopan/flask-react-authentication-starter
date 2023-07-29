@@ -27,17 +27,14 @@ const errorSlice = createSlice({
   name: "error",
   initialState: "",
   reducers: {
-    inputError: () => {
-      return "Choose a username and password!";
-    },
     loginError: () => {
-      return "Uh oh! Your credentials were not accepted. Try again!";
+      return "Your credentials were not accepted. Please try again.";
     },
     registrationError: () => {
-      return "Uh oh! Registration failed. Try again with a new username!";
+      return "This email is already registered. Please log in instead.";
     },
     codelessError: () => {
-      return "Uh oh! Something went wrong! Is the server running?";
+      return "Authentication failed. The server may be down.";
     },
     clearError: () => {
       return "";
@@ -45,7 +42,6 @@ const errorSlice = createSlice({
   },
 });
 
-export const inputError = errorSlice.actions.inputError;
 const loginError = errorSlice.actions.loginError;
 const registrationError = errorSlice.actions.registrationError;
 const codelessError = errorSlice.actions.codelessError;
