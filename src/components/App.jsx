@@ -21,7 +21,7 @@ export default function App() {
         <Route exact path="/" Component={HomePage} />
         <Route
           exact
-          path="/login"
+          path="/login/:mode?"
           element={user ? <Navigate to="/" /> : <LoginPage />}
         />
         <Route path="*" Component={NotFoundPage} />

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import actions from "../state/actions";
 
 export default function LoginPage() {
@@ -10,6 +11,11 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+
+  const { mode } = useParams();
+  useEffect(() => {
+    setIsRegistering(mode == "register")
+  }, [mode])
 
   const register = () => {};
 
