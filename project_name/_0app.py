@@ -1,25 +1,23 @@
 import os
+
 import dotenv
-import time
-from flask import Flask
-from flask.helpers import send_from_directory
-from flask_cors import CORS, cross_origin
+import flask
+import flask_cors
 
 dotenv.load_dotenv()
 STATIC_FOLDER = os.path.join("..", os.getenv("STATIC_FOLDER"))
 
-app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path="")
-CORS(app)
+app = flask.Flask(__name__, static_folder=STATIC_FOLDER, static_url_path="")
+flask_cors.CORS(app)
 
 
 @app.route("/api/time")
-@cross_origin()
+@flask_cors.cross_origin()
 def get_current_time():
-    return {"content": time.time()}
+    return {"content": "time"}
 
 
 @app.route("/")
-@cross_origin()
+@flask_cors.cross_origin()
 def server():
-    return send_from_directory(app.static_folder, "index.html")
-
+    return flask.helpers.send_from_directory(app.static_folder, "index.html")
