@@ -11,3 +11,8 @@ heroku config:set DB_PORT=<database port>
 heroku config:set DB_NAME=<database name>
 ```
 See database.sql for what tables need to be created.
+
+You must also add heroku as the first buildpack:
+```
+heroku buildpacks:add --index 1 heroku/nodejs
+```
