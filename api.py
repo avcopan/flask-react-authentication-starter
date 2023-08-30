@@ -1,9 +1,14 @@
+import os
+import dotenv
 import time
 from flask import Flask
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 
-app = Flask(__name__, static_folder="project-name-frontend/dist", static_url_path="")
+dotenv.load_dotenv()
+
+print(os.getenv("STATIC_FOLDER"))
+app = Flask(__name__, static_folder=os.getenv("STATIC_FOLDER"), static_url_path="")
 CORS(app)
 
 
