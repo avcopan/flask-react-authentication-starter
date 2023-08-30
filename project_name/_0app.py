@@ -47,12 +47,10 @@ flask_cors.CORS(app, supports_credentials=True)
 
 
 @app.route("/api/time")
-@flask_cors.cross_origin()
 def get_current_time():
     return {"content": "TIME!"}
 
 
 @app.route("/")
-@flask_cors.cross_origin()
 def server():
     return flask.helpers.send_from_directory(app.static_folder, "index.html")
