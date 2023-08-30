@@ -6,9 +6,9 @@ from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 
 dotenv.load_dotenv()
+STATIC_FOLDER = os.path.join("..", os.getenv("STATIC_FOLDER"))
 
-print(os.getenv("STATIC_FOLDER"))
-app = Flask(__name__, static_folder=os.getenv("STATIC_FOLDER"), static_url_path="")
+app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path="")
 CORS(app)
 
 
@@ -22,3 +22,4 @@ def get_current_time():
 @cross_origin()
 def server():
     return send_from_directory(app.static_folder, "index.html")
+
