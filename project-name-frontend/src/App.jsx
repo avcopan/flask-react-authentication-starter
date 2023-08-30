@@ -1,23 +1,17 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-function App() {
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    axios
-      .get("/api/time")
-      .then((res) => res.data)
-      .then((data) => setTime(data.content))
-      .catch(console.error);
-  }, []);
-
+export default function App() {
   return (
-    <>
-      <h1>Project Name</h1>
-      <div>Time: {time}</div>
-    </>
+    <Layout>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/login" element={<LoginPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Layout>
   );
 }
-
-export default App;
