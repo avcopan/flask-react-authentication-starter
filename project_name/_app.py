@@ -1,5 +1,4 @@
 import os
-import time
 
 import dotenv
 import flask
@@ -144,9 +143,3 @@ def register_user():
     flask.session["user_id"] = user["id"]
 
     return response(201, contents=user)
-
-
-# OTHER ROUTES
-@app.route("/api/time")
-def get_current_time():
-    return response(200, contents=time.time())

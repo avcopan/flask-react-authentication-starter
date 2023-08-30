@@ -1,22 +1,12 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    console.log("HI");
-    axios
-      .get("/api/time")
-      .then((res) => res.data)
-      .then((data) => setTime(data.contents))
-      .catch(console.error);
-  }, []);
+  const user = useSelector((store) => store.user);
 
   return (
     <div>
       <h2>Home Page</h2>
-      <p>Time: {time}</p>
+      {user && <p>User: {user.email}</p>}
     </div>
   );
 }
